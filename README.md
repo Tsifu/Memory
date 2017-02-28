@@ -16,11 +16,11 @@ This app will consist of a single screen with a header with game controls and a 
 
 ### Implementation Timeline
 
-**Day 1**: Setup all necessary Node modules, including getting webpack up and running.  Create `webpack.config.js` as well as `package.json`.  Write the logic of matching the cards.  And game logic of when to switch player or continue player's turn.  Add up matching points.
+**Day 1**: Setup all necessary Node modules, including getting webpack up and running.  Create `webpack.config.js` as well as `package.json`.  Write the logic of matching the cards.  Create randomized logic to shuffle cards.  
 
 **Day 2**: Start creating card animation and card flipping affect. Create game controllers and different mode.  
 
-**Day 3**: Add single player mode with timing.  Quality control, debugging and refractor.  Work on bonus features
+**Day 3**: Add single player mode with timing and two player mode.  Quality control, debugging and refractor.  Work on bonus features
 
 ### Bonus Features
 
