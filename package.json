@@ -1,0 +1,34 @@
+{
+  "name": "Memory",
+  "version": "1.0.0",
+  "description": "This is a vanilla JS version of memory, using a 52 card deck. There will be 3 play mode (single player, two-player, single player timed mode) with two card card option (52 or 20).",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack",
+    "postinstall": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tsifu/Memory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tsifu/Memory/issues"
+  },
+  "homepage": "https://github.com/Tsifu/Memory#readme",
+  "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "webpack": "^2.2.1"
+  }
+}
