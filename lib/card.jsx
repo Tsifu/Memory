@@ -9,27 +9,16 @@ class Card extends React.Component {
     this.state = {
       flipCard: "card"
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.card.revealed === true) {
-      this.setState({flipCard: "card"});
+    if (newProps.card.matched === true) {
+      this.setState({ flipCard: "card card-flipped" });
+    } else if (newProps.card.revealed === true) {
+      this.setState({ flipCard: "card card-flipped"});
+    } else if (newProps.card.revealed === false) {
+      this.setState({ flipCard: "card"});
     }
-  }
-
-  handleClick() {
-    let css = (this.state.flipCard === "card") ? "card card-flipped" : "card";
-    this.setState({ flipCard: css });
-  }
-
-  revealed() {
-    console.log("hello");
-  }
-
-  hide() {
-    this.reveal = false;
   }
 
   render() {
@@ -38,7 +27,7 @@ class Card extends React.Component {
 
     return (
       <div className="container">
-        <div className={this.state.flipCard} onClick={this.handleClick}>
+        <div className={this.state.flipCard}>
           <div className="front"><img src={front}></img></div>
           <div className="back"><img src={back}></img></div>
         </div>

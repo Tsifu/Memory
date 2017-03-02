@@ -7,6 +7,16 @@ body, main, ul, li {
 	font-size: 20px;
 }
 
+body {
+	background-image: url('./background/background_three.jpg');
+	background-size: cover;
+}
+
+.header-content, .main-content, .footer-content {
+	width: 950px;
+	margin: 0 auto;
+}
+
 img {
 	width: 100%;
 	height: 100%;
@@ -45,4 +55,9 @@ img {
 
 .back {
 	transform: rotateY(180deg);
+}
+
+.main-content {
+	max-width: 950px;
+	min-height: 370px;
 }
