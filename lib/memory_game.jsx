@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Game from './game';
 
 
 document.addEventListener("DOMContentLoaded", () => {
   const main = document.getElementById('main');
-  ReactDOM.render(<div>Hello World!</div>, main);
+  ReactDOM.render(<Game />, main);
 });
