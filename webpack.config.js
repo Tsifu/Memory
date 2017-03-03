@@ -1,6 +1,6 @@
 module.exports = {
   context: __dirname,
-  entry: './lib/memory_game.jsx',
+  entry: './memory_game.jsx',
   output: {
     path: "./",
     filename: 'bundle.js'

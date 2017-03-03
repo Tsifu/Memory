@@ -22,8 +22,6 @@ const customStyles = {
     border                : '1px solid #ccc',
     borderRadius          : '4px',
     padding               : '0px',
-
-
   }
 };
 
@@ -48,6 +46,10 @@ class Game extends React.Component {
     this.resetGame = this.resetGame.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchGiphy();
   }
 
   checkCard(cardComponent) {
@@ -164,7 +166,6 @@ class Game extends React.Component {
 
   closeModal() {
     this.setState({modalIsOpen: false });
-      this.clearState();
   }
 
   render() {
@@ -174,6 +175,11 @@ class Game extends React.Component {
     });
 
     let time = this.convertTime();
+
+    let giphy;
+    if (this.props.giphy) {
+      giphy = this.props.giphy.data[0].images.fixed_height.url;
+    }
 
     return (
       <div className="body">
@@ -223,7 +229,7 @@ class Game extends React.Component {
           style={customStyles}
           contentLabel="celebrate"
           >
-        <div>Hello World</div>
+        <div><img src={giphy}/></div>
 
       </Modal>
       </div>
