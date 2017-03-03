@@ -8,7 +8,7 @@ body, main, ul, li {
 }
 
 body {
-	background-image: url('./background/background_three.jpg');
+	/*background-image: url('./background/background_four.jpg');*/
 	background-size: cover;
 }
 
@@ -60,4 +60,8 @@ img {
 .main-content {
 	max-width: 950px;
 	min-height: 370px;
+}
+
+.li {
+	border: 1px;
 }
