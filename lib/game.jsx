@@ -13,7 +13,7 @@ const customStyles = {
     backgroundColor   : 'rgba(255, 255, 255, 0.6)'
   },
   content : {
-    top                   : '40%',
+    top                   : '50%',
     left                  : '50%',
     right                 : 'auto',
     bottom                : 'auto',
@@ -22,14 +22,16 @@ const customStyles = {
     border                : '1px solid #ccc',
     borderRadius          : '4px',
     padding               : '0px',
+
+
   }
 };
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
-
     this.board = new Board();
+
     this.state = {
       score: 0,
       firstCard: null,
@@ -38,30 +40,14 @@ class Game extends React.Component {
       minutes: 0,
       seconds: 0,
       interval: null,
-      modalIsOpen: false,
-      modal2IsOpen: false,
-      modal3IsOpen: true,
-      gameMode: "easy",
-      name: ""
+      modalIsOpen: false
     };
 
-    this.time = "";
-    this.name = "";
     this.checkCard = this.checkCard.bind(this);
     this.setTimer = this.setTimer.bind(this);
     this.resetGame = this.resetGame.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.openModal3 = this.openModal3.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.closeModal2 = this.closeModal2.bind(this);
-    this.closeModal3 = this.closeModal3.bind(this);
-    this.selectMode = this.selectMode.bind(this);
-    this.startGame = this.startGame.bind(this);
-    this.update = this.update.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.fetchGiphy();
   }
 
   checkCard(cardComponent) {
@@ -86,10 +72,6 @@ class Game extends React.Component {
           secondCard: null,
           score: this.state.score + 1
         });
-
-        if (this.state.score === 3) {
-          this.openModal();
-        }
       } else {
 
 
@@ -98,7 +80,6 @@ class Game extends React.Component {
           card2.props.card.revealed = false;
           this.setState({ firstCard: null });
           this.setState({ secondCard: null });
-
         }, 1500);
       }
     }
@@ -165,7 +146,7 @@ class Game extends React.Component {
   resetGame() {
     this.board = new Board();
     window.clearInterval(this.state.interval);
-    console.log(this.state.interval)
+
     this.setState({
       score: 0,
       firstCard: null,
@@ -179,46 +160,11 @@ class Game extends React.Component {
 
   openModal() {
     this.setState({ modalIsOpen: true });
-
-    setTimeout(() => {
-      this.setState({ modalIsOpen: false});
-      this.setState({ modal2IsOpen: true});
-      this.time = this.convertTime();
-      this.resetGame();
-    }, 200);
   }
 
   closeModal() {
     this.setState({modalIsOpen: false });
-  }
-
-  closeModal2() {
-    this.setState({modal2IsOpen: false });
-  }
-
-  closeModal3() {
-    this.board = new Board(this.state.gameMode);
-    this.setState({modal3IsOpen: false });
-  }
-
-  openModal3() {
-    this.setState({ modal3IsOpen: true });
-  }
-
-  selectMode(e) {
-    this.setState({ gameMode: e.currentTarget.value });
-  }
-
-  startGame() {
-    console.log(this.state.gameMode);
-  }
-
-  update(input_type) {
-    return (
-      event => {
-        this.setState( {[input_type]: event.target.value });
-      }
-    );
+      this.clearState();
   }
 
   render() {
@@ -229,50 +175,36 @@ class Game extends React.Component {
 
     let time = this.convertTime();
 
-    let giphy;
-    if (this.props.giphy) {
-      giphy = this.props.giphy.data[0].images.fixed_height.url;
-    }
-
-    let winner = this.state.name;
-    let score = this.state.score;
-
     return (
       <div className="body">
       <header>
         <div className="header-content">
+          Welcome!
 
-          <div className="score-board">
-            <div className="scoreTitle text-align">
-              Matched Pair
+          <div className="scoreBoard">
+            <div className="scoreTitle">
+              Score
             </div>
-            <div className="current-score  text-align">
+            <div className="currentScore">
               {this.state.score}
             </div>
           </div>
 
           <div className="game-setting">
-            <div className="text-align">Time</div>
-            <div className="current-time">
-              <time className="text-align">{time}</time>
-            </div>
-            <div className="text-align">
-              <button className="restart-game" onClick={this.resetGame}>Reset</button>
-            </div>
+            <h1><time>{time}</time></h1>
+            <button className="restart-game" onClick={this.resetGame}>Reset</button>
           </div>
         </div>
       </header>
 
       <main>
-        <div className="top-ten"></div>
         <div className="main-content">
           <ul className="board">
             {cards}
           </ul>
 
           <div>
-            <button className="modal-button" onClick={this.openModal}>Modal</button>
-            <button className="modal2-button">Scoreboard</button>
+            <button onClick={this.openModal}>Modal</button>
           </div>
         </div>
 
@@ -280,7 +212,7 @@ class Game extends React.Component {
 
       <footer>
         <div className="footer-content">
-
+          more about the creator
         </div>
       </footer>
 
@@ -291,91 +223,9 @@ class Game extends React.Component {
           style={customStyles}
           contentLabel="celebrate"
           >
-        <div className="celebration"><img src={giphy}/></div>
+        <div>Hello World</div>
 
       </Modal>
-
-      <Modal
-          isOpen={this.state.modal2IsOpen}
-          onRequestClose={this.closeModal2}
-          style={customStyles}
-          contentLabel="score-top-ten"
-          >
-        <div className="score-modal">
-          <div className="score-title">
-            <div>Scoreboard</div>
-          </div>
-          <div className="leaderboard-detail">
-            <div className="leaderNumber">
-              <ul>
-                <li>number</li>
-                <li>1</li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Name</li>
-                <li className="animate-border">{winner}</li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Score</li>
-                <li>{score}</li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Time</li>
-                <li>{this.time}</li>
-              </ul>
-            </div>
-          </div>
-          <div className="exit-button">
-            <button  onClick={this.closeModal2}>Exit</button>
-          </div>
-        </div>
-
-      </Modal>
-
-      <Modal
-          isOpen={this.state.modal3IsOpen}
-          onRequestClose={this.closeModal3}
-          style={customStyles}
-          contentLabel="game-mode"
-          >
-
-          <div className="select-modal">
-            <div className="welcome-sign">Welcome!</div>
-
-            <div>
-              Select Mode:
-              <select className="select-option" onChange={this.selectMode}>
-                <option value="easy">Easy</option>
-                <option value="normal">Normal</option>
-              </select>
-            </div>
-
-            <div>
-              Enter Name:
-                <input
-                  className="name-input"
-                  type="text"
-                  value={this.state.name}
-                  placeholder="Enter Name"
-                  onChange={this.update('name')}
-                  />
-
-            </div>
-
-            <div className="go">
-              <button className="go-button" onClick={this.closeModal3}>Start Game</button>
-            </div>
-
-          </div>
-
-      </Modal>
-
       </div>
 
 

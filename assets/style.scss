@@ -1,0 +1,269 @@
+body, main, ul, li {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+	font-family: 'Droid Serif', serif;
+	font-size: 20px;
+}
+
+body {
+	/*background-image: url('./background/background_two.jpg');*/
+	background-size: cover;
+}
+
+.header-content, .main-content, .footer-content {
+	width: 950px;
+	margin: 0 auto;
+}
+
+main {
+	position: relative;
+}
+
+img {
+	width: 100%;
+	height: 100%;
+}
+
+button {
+	font-family: 'Droid Serif', serif;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+	position: relative;
+	width: 60px;
+	height: 80px;
+	margin: 5px;
+	transition: all 0.6s ease;
+	transform-style: preserve-3d;
+}
+
+.card-flipped {
+	transform: rotateY(180deg);
+}
+
+.container {
+	perspective: 700;
+}
+
+.front, .back {
+	position: absolute;
+	width: 60px;
+	height: 80px;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+
+.main-content {
+	max-width: 950px;
+	min-height: 370px;
+}
+
+.li {
+	border: 1px;
+}
+
+.celebration {
+	width: 550px;
+	height: 300px;
+}
+
+.header-content {
+	display: flex;
+	justify-content: space-around;
+}
+
+.score-board, .game-setting {
+	padding: 20px;
+}
+
+.text-align {
+	text-align: center;
+}
+
+.current-score, .current-time {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+}
+
+.current-time {
+	padding: 8px;
+}
+
+.leaderboard {
+	display: block;
+	position: absolute;
+}
+
+.top-ten {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 100%;
+	background-color: rgba(20, 20, 20, 0.5);
+	transition: right 1s;
+
+}
+
+.modal-button:focus + .top-ten{
+	right: 0;
+}
+
+.leaderboard-detail {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+.celebration {
+	margin: 0 auto;
+	display: block;
+}
+
+.score-title {
+	display: flex;
+	justify-content: center;
+}
+
+li {
+	text-align: center;
+}
+
+.exit-button {
+	display: flex;
+	justify-content: center;
+}
+
+.animate-border {
+	color: #69D2E7;
+	outline: 10px dashed #E0E4CC;
+	box-shadow: 0 0 0 10px #69D2E7;
+	animation: 1s animateBorderOne ease infinite;
+}
+
+@keyframes animate-border {
+  to {
+    outline-color: #69D2E7;
+    box-shadow: 0 0 0 10px #E0E4CC;
+  }
+}
+
+.score-modal {
+	width: 300px;
+	height: 300px;
+}
+
+.start-section {
+	padding-top: 40px;
+}
+
+.start-button {
+	border: none;
+	background: #3a7999;
+	color: #f2f2f2;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	transition: all 500ms ease;
+}
+
+.start-button:before {
+	content:'';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 42px;
+	background: rgba(255,255,255,0.3);
+	border-radius: 5px;
+	transition: all 1s ease;
+}
+
+.start-button:hover:before {
+	width: 100%;
+}
+
+.go-button {
+	margin-left: 85px;
+}
+
+.go-button {
+	border: none;
+	background: #3a7999;
+	color: #f2f2f2;
+	padding: 10px;
+	font-size: 18px;
+	border-radius: 5px;
+	position: relative;
+	box-sizing: border-box;
+	transition: all 500ms ease;
+}
+
+.go-button:before {
+	content:'';
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 42px;
+	background: rgba(255,255,255,0.3);
+	border-radius: 5px;
+	transition: all 1s ease;
+}
+
+.go-button:hover:before {
+	width: 100%;
+}
+
+.select-modal {
+	padding-top: 20px;
+	width: 300px;
+	height: 150px;
+	margin-left: 20px;
+}
+
+.welcome-sign {
+	margin-bottom: 15px;
+	margin-left: 95px;
+}
+
+.name-input {
+	border: none;
+	border-color: transparent;
+	border-style: none;
+	font-family: 'Droid Serif', serif;
+	font-size: 18px;
+	width: 150px;
+	margin-bottom: 15px;
+	margin-left: 5px;
+}
+
+.select-option {
+	border:0px;
+  outline:0px;
+	font-family: 'Droid Serif', serif;
+	font-size: 18px;
+	margin-bottom: 5px;
+}
+
+option {
+	font-family: 'Droid Serif', serif;
+	font-size: 18px;
+	border: 1px solid #fff;
+  background-color: transparent;
+}

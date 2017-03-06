@@ -1,8 +1,5 @@
 import React from 'react';
 
-const EVALUES = ["A", "2", "10", "K"];
-const ESUITS = ["spades", "hearts"];
-
 const VALUES = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 const SUITS = ["spades", "hearts", "clubs", "diamonds"];
 
@@ -15,16 +12,8 @@ class Board extends React.Component {
   }
 
   createBoard() {
-    let values = VALUES;
-    let suits = SUITS;
-
-    if (this.props === "easy") {
-      values = EVALUES;
-      suits = ESUITS;
-    }
-
-    values.forEach(value => {
-      suits.forEach(suit => {
+    VALUES.forEach(value => {
+      SUITS.forEach(suit => {
         this.cards.push(new Card(value, suit));
       });
     });
