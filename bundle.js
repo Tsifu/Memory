@@ -26137,17 +26137,12 @@ var _store = __webpack_require__(100);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _api_util = __webpack_require__(57);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-window.fetchGif = _api_util.fetchGif;
 
 document.addEventListener("DOMContentLoaded", function () {
   _reactModal2.default.setAppElement(document.body);
   var main = document.getElementById('main');
   var store = (0, _store2.default)();
-  window.store = store;
   _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), main);
 });
 
