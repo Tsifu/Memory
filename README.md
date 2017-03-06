@@ -18,9 +18,9 @@ Simple and fun card game to test your memory and concentration built with JavaSc
 
 ### Detail
 
-* Created a card, board and game class to handle respective object's logic
-* Implemented redux containers to handle AJAX request for celebratory animation when the game is completed
-* Renders each card component with specific card image to enhance user's experience
+* Created a card, board and game class to handle each object's component
+* Implemented redux containers to fetch AJAX request for celebratory animation when the game is completed
+* Renders each card component with specific card animation to enhance player's experience
 * Optimized random card placement with card shuffling logic
 * Leveraged classes in CSS styling to render different card layout dependent on game mode
-* Used React Modal to trigger user input and transition for game completion
+* Used React Modal to trigger user input and transition from game play to game completion
