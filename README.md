@@ -1,6 +1,6 @@
 # Memory
 
-Simple and fun card game to test your memory and concentration built with JavaScript and React.js.     
+Simple and fun single player card game to test your memory and concentration built with JavaScript and React.js.     
 
 [Play now](http://tsi.life/Memory/)
 
@@ -10,11 +10,11 @@ Simple and fun card game to test your memory and concentration built with JavaSc
 
 - [ ] Game mode: Easy(8 cards) and Normal(52 cards)
 - [ ] Animation to simulate a card flipping when clicked on
-- [ ] Cards will be flipped back to face down if the two cards the player chose does not match
+- [ ] Cards will automatically flipped to face down if the two cards the player picked does not match
 - [ ] Player is not allowed to flip more than two cards each turn
-- [ ] Matched cards will stay open through out the game
-- [ ] Score count to show how pairs the user has matched
-- [ ] Game will end when the user exposes all the matched pairs or restart the game
+- [ ] Matched cards will stay open for the duration of the session
+- [ ] Count(Matched Pair) to track number of pairs the player has matched
+- [ ] Game will end when the player exposes all the cards or restart the game
 
 ### Detail
 
