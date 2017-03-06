@@ -34,10 +34,6 @@ class Game extends React.Component {
       score: 0,
       firstCard: null,
       secondCard: null,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      interval: 0,
       modalIsOpen: false,
       modal2IsOpen: false,
       modal3IsOpen: true,
@@ -45,12 +41,8 @@ class Game extends React.Component {
       name: ""
     };
 
-    this.timeInterval = 0;
-
-    this.time = "";
     this.name = "";
     this.checkCard = this.checkCard.bind(this);
-    this.setTimer = this.setTimer.bind(this);
     this.resetGame = this.resetGame.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openModal3 = this.openModal3.bind(this);
@@ -58,7 +50,6 @@ class Game extends React.Component {
     this.closeModal2 = this.closeModal2.bind(this);
     this.closeModal3 = this.closeModal3.bind(this);
     this.selectMode = this.selectMode.bind(this);
-    this.startGame = this.startGame.bind(this);
     this.update = this.update.bind(this);
     this.restartGame = this.restartGame.bind(this);
   }
@@ -69,10 +60,6 @@ class Game extends React.Component {
   }
 
   checkCard(cardComponent) {
-    if (this.state.seconds === 0) {
-      this.setTimer();
-    }
-
     if (this.state.firstCard === null) {
       cardComponent.props.card.revealed = true;
       this.setState({ firstCard: cardComponent});
@@ -105,67 +92,6 @@ class Game extends React.Component {
         }, 1500);
       }
     }
-  }
-
-  setTimer() {
-    // this.timeInterval = setInterval(this._tick.bind(this), 1000);
-
-
-    // this.setState({
-    //   interval: setInterval(this._tick.bind(this), 1000)
-    // });
-  }
-
-  _tick() {
-    this._incrementSeconds();
-  }
-
-  _incrementSeconds() {
-    this.setState({ seconds: this.state.seconds + 1});
-
-    if (this.state.seconds === 60) {
-      this.setState({ seconds: 0});
-      this._incrementMinutes();
-    }
-  }
-
-  _incrementMinutes() {
-    this.setState({ minutes: this.state.minutes + 1});
-
-    if (this.minutes === 60) {
-      this.minutes = 0;
-      this._incrementHours();
-    }
-  }
-
-  _incrementHours() {
-    this.setState({ hours: (this.state.hours + 1) % 24 });
-  }
-
-  convertTime() {
-    let sec = this.state.seconds;
-    let min = this.state.minutes;
-    let hr = this.state.hours;
-
-    if (sec < 10) {
-      sec = `0${sec}`;
-    } else {
-      sec = `${sec}`;
-    }
-
-    if (min < 10) {
-      min = `0${min}`;
-    } else {
-      min = `${min}`;
-    }
-
-    if (hr < 10) {
-      hr = `0${hr}`;
-    } else {
-      hr = `${hr}`;
-    }
-
-    return `${hr}:${min}:${sec}`;
   }
 
   resetGame() {
@@ -203,15 +129,12 @@ class Game extends React.Component {
     });
   }
 
-
-
   openModal() {
     this.setState({ modalIsOpen: true });
 
     setTimeout(() => {
       this.setState({ modalIsOpen: false});
       this.setState({ modal2IsOpen: true});
-      this.time = this.convertTime();
       this.resetGame();
     }, 2000);
   }
@@ -241,10 +164,6 @@ class Game extends React.Component {
     this.setState({ gameMode: e.currentTarget.value });
   }
 
-  startGame() {
-    console.log(this.state.gameMode);
-  }
-
   update(input_type) {
     return (
       event => {
@@ -257,8 +176,6 @@ class Game extends React.Component {
     let cards = this.board.cards.map((card, idx) => {
       return (<li key={idx} onClick={() => this.checkCard(<Card card={card}/>)}><Card card={card}/></li>);
     });
-
-    let time = this.convertTime();
 
     let giphy;
     if (this.props.giphy) {

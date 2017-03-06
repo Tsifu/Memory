@@ -11459,10 +11459,6 @@ var Game = function (_React$Component) {
       score: 0,
       firstCard: null,
       secondCard: null,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      interval: 0,
       modalIsOpen: false,
       modal2IsOpen: false,
       modal3IsOpen: true,
@@ -11470,12 +11466,8 @@ var Game = function (_React$Component) {
       name: ""
     };
 
-    _this.timeInterval = 0;
-
-    _this.time = "";
     _this.name = "";
     _this.checkCard = _this.checkCard.bind(_this);
-    _this.setTimer = _this.setTimer.bind(_this);
     _this.resetGame = _this.resetGame.bind(_this);
     _this.openModal = _this.openModal.bind(_this);
     _this.openModal3 = _this.openModal3.bind(_this);
@@ -11483,7 +11475,6 @@ var Game = function (_React$Component) {
     _this.closeModal2 = _this.closeModal2.bind(_this);
     _this.closeModal3 = _this.closeModal3.bind(_this);
     _this.selectMode = _this.selectMode.bind(_this);
-    _this.startGame = _this.startGame.bind(_this);
     _this.update = _this.update.bind(_this);
     _this.restartGame = _this.restartGame.bind(_this);
     return _this;
@@ -11499,10 +11490,6 @@ var Game = function (_React$Component) {
     key: 'checkCard',
     value: function checkCard(cardComponent) {
       var _this2 = this;
-
-      if (this.state.seconds === 0) {
-        this.setTimer();
-      }
 
       if (this.state.firstCard === null) {
         cardComponent.props.card.revealed = true;
@@ -11534,73 +11521,6 @@ var Game = function (_React$Component) {
           }, 1500);
         }
       }
-    }
-  }, {
-    key: 'setTimer',
-    value: function setTimer() {
-      // this.timeInterval = setInterval(this._tick.bind(this), 1000);
-
-
-      // this.setState({
-      //   interval: setInterval(this._tick.bind(this), 1000)
-      // });
-    }
-  }, {
-    key: '_tick',
-    value: function _tick() {
-      this._incrementSeconds();
-    }
-  }, {
-    key: '_incrementSeconds',
-    value: function _incrementSeconds() {
-      this.setState({ seconds: this.state.seconds + 1 });
-
-      if (this.state.seconds === 60) {
-        this.setState({ seconds: 0 });
-        this._incrementMinutes();
-      }
-    }
-  }, {
-    key: '_incrementMinutes',
-    value: function _incrementMinutes() {
-      this.setState({ minutes: this.state.minutes + 1 });
-
-      if (this.minutes === 60) {
-        this.minutes = 0;
-        this._incrementHours();
-      }
-    }
-  }, {
-    key: '_incrementHours',
-    value: function _incrementHours() {
-      this.setState({ hours: (this.state.hours + 1) % 24 });
-    }
-  }, {
-    key: 'convertTime',
-    value: function convertTime() {
-      var sec = this.state.seconds;
-      var min = this.state.minutes;
-      var hr = this.state.hours;
-
-      if (sec < 10) {
-        sec = '0' + sec;
-      } else {
-        sec = '' + sec;
-      }
-
-      if (min < 10) {
-        min = '0' + min;
-      } else {
-        min = '' + min;
-      }
-
-      if (hr < 10) {
-        hr = '0' + hr;
-      } else {
-        hr = '' + hr;
-      }
-
-      return hr + ':' + min + ':' + sec;
     }
   }, {
     key: 'resetGame',
@@ -11649,7 +11569,6 @@ var Game = function (_React$Component) {
       setTimeout(function () {
         _this3.setState({ modalIsOpen: false });
         _this3.setState({ modal2IsOpen: true });
-        _this3.time = _this3.convertTime();
         _this3.resetGame();
       }, 2000);
     }
@@ -11684,11 +11603,6 @@ var Game = function (_React$Component) {
       this.setState({ gameMode: e.currentTarget.value });
     }
   }, {
-    key: 'startGame',
-    value: function startGame() {
-      console.log(this.state.gameMode);
-    }
-  }, {
     key: 'update',
     value: function update(input_type) {
       var _this4 = this;
@@ -11711,8 +11625,6 @@ var Game = function (_React$Component) {
           _react2.default.createElement(_card2.default, { card: card })
         );
       });
-
-      var time = this.convertTime();
 
       var giphy = void 0;
       if (this.props.giphy) {
