@@ -1,29 +1,26 @@
 # Memory
-This is a vanilla JS version of memory, using a 52 card deck. There will be 3 play mode (single player, two-player, single player timed mode) with two card card option (52 or 20).
 
+Simple and fun card game to test your memory and concentration built with JavaScript and React.js.     
 
-### Functionality & MVP
+[Play now](http://tsi.life/Memory/)
 
-- [ ] Start, and reset the game board
-- [ ] Select card to be revealed
-- [ ] Allow player to go until he/she picks two unmatched cards
-- [ ] Choose how many players
-- [ ] Choose card count
+![main screen](assets/screen_shot.png)
 
-### Wireframe
+### Features/Functionality
 
-This app will consist of a single screen with a header with game controls and a main component for the cards to be rendered.
+- [ ] Game mode: Easy(8 cards) and Normal(52 cards)
+- [ ] Animation to simulate a card flipping when clicked on
+- [ ] Cards will be flipped back to face down if the two cards the player chose does not match
+- [ ] Player is not allowed to flip more than two cards each turn
+- [ ] Matched cards will stay open through out the game
+- [ ] Score count to show how pairs the user has matched
+- [ ] Game will end when the user exposes all the matched pairs or restart the game
 
-### Implementation Timeline
+### Detail
 
-**Day 1**: Setup all necessary Node modules, including getting webpack up and running.  Create `webpack.config.js` as well as `package.json`.  Write the logic of matching the cards.  Create randomized logic to shuffle cards.  
-
-**Day 2**: Start creating card animation and card flipping affect. Create game controllers and different mode.  
-
-**Day 3**: Add single player mode with timing and two player mode.  Quality control, debugging and refractor.  Work on bonus features
-
-### Bonus Features
-
-- [ ] Add Computer Player
-- [ ] Add CSS animation when game is over
-- [ ] Add pictures mode option in lieu of playing cards
+* Created a card, board and game class to handle respective object's logic
+* Implemented redux containers to handle AJAX request for celebratory animation when the game is completed
+* Renders each card component with specific card image to enhance user's experience
+* Optimized random card placement with card shuffling logic
+* Leveraged classes in CSS styling to render different card layout dependent on game mode
+* Used React Modal to trigger user input and transition for game completion

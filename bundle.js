@@ -11508,7 +11508,10 @@ var Game = function (_React$Component) {
             secondCard: null,
             score: this.state.score + 1
           });
-          if (this.state.score === 3) {
+
+          if (this.state.score === 3 && this.state.gameMode === "easy") {
+            this.openModal();
+          } else if (this.state.score === 25) {
             this.openModal();
           }
         } else {
