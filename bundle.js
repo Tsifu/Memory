@@ -11470,8 +11470,12 @@ var Game = function (_React$Component) {
       name: ""
     };
 
+    _this.timeInterval = 0;
+
+    _this.time = "";
     _this.name = "";
     _this.checkCard = _this.checkCard.bind(_this);
+    _this.setTimer = _this.setTimer.bind(_this);
     _this.resetGame = _this.resetGame.bind(_this);
     _this.openModal = _this.openModal.bind(_this);
     _this.openModal3 = _this.openModal3.bind(_this);
@@ -11530,6 +11534,73 @@ var Game = function (_React$Component) {
           }, 1500);
         }
       }
+    }
+  }, {
+    key: 'setTimer',
+    value: function setTimer() {
+      // this.timeInterval = setInterval(this._tick.bind(this), 1000);
+
+
+      // this.setState({
+      //   interval: setInterval(this._tick.bind(this), 1000)
+      // });
+    }
+  }, {
+    key: '_tick',
+    value: function _tick() {
+      this._incrementSeconds();
+    }
+  }, {
+    key: '_incrementSeconds',
+    value: function _incrementSeconds() {
+      this.setState({ seconds: this.state.seconds + 1 });
+
+      if (this.state.seconds === 60) {
+        this.setState({ seconds: 0 });
+        this._incrementMinutes();
+      }
+    }
+  }, {
+    key: '_incrementMinutes',
+    value: function _incrementMinutes() {
+      this.setState({ minutes: this.state.minutes + 1 });
+
+      if (this.minutes === 60) {
+        this.minutes = 0;
+        this._incrementHours();
+      }
+    }
+  }, {
+    key: '_incrementHours',
+    value: function _incrementHours() {
+      this.setState({ hours: (this.state.hours + 1) % 24 });
+    }
+  }, {
+    key: 'convertTime',
+    value: function convertTime() {
+      var sec = this.state.seconds;
+      var min = this.state.minutes;
+      var hr = this.state.hours;
+
+      if (sec < 10) {
+        sec = '0' + sec;
+      } else {
+        sec = '' + sec;
+      }
+
+      if (min < 10) {
+        min = '0' + min;
+      } else {
+        min = '' + min;
+      }
+
+      if (hr < 10) {
+        hr = '0' + hr;
+      } else {
+        hr = '' + hr;
+      }
+
+      return hr + ':' + min + ':' + sec;
     }
   }, {
     key: 'resetGame',

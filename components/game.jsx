@@ -45,8 +45,12 @@ class Game extends React.Component {
       name: ""
     };
 
+    this.timeInterval = 0;
+
+    this.time = "";
     this.name = "";
     this.checkCard = this.checkCard.bind(this);
+    this.setTimer = this.setTimer.bind(this);
     this.resetGame = this.resetGame.bind(this);
     this.openModal = this.openModal.bind(this);
     this.openModal3 = this.openModal3.bind(this);
@@ -103,6 +107,67 @@ class Game extends React.Component {
     }
   }
 
+  setTimer() {
+    // this.timeInterval = setInterval(this._tick.bind(this), 1000);
+
+
+    // this.setState({
+    //   interval: setInterval(this._tick.bind(this), 1000)
+    // });
+  }
+
+  _tick() {
+    this._incrementSeconds();
+  }
+
+  _incrementSeconds() {
+    this.setState({ seconds: this.state.seconds + 1});
+
+    if (this.state.seconds === 60) {
+      this.setState({ seconds: 0});
+      this._incrementMinutes();
+    }
+  }
+
+  _incrementMinutes() {
+    this.setState({ minutes: this.state.minutes + 1});
+
+    if (this.minutes === 60) {
+      this.minutes = 0;
+      this._incrementHours();
+    }
+  }
+
+  _incrementHours() {
+    this.setState({ hours: (this.state.hours + 1) % 24 });
+  }
+
+  convertTime() {
+    let sec = this.state.seconds;
+    let min = this.state.minutes;
+    let hr = this.state.hours;
+
+    if (sec < 10) {
+      sec = `0${sec}`;
+    } else {
+      sec = `${sec}`;
+    }
+
+    if (min < 10) {
+      min = `0${min}`;
+    } else {
+      min = `${min}`;
+    }
+
+    if (hr < 10) {
+      hr = `0${hr}`;
+    } else {
+      hr = `${hr}`;
+    }
+
+    return `${hr}:${min}:${sec}`;
+  }
+
   resetGame() {
     this.board = new Board();
     window.clearInterval(this.timeInterval);
@@ -137,6 +202,8 @@ class Game extends React.Component {
       name: ""
     });
   }
+
+
 
   openModal() {
     this.setState({ modalIsOpen: true });
