@@ -1,4 +1,4 @@
-import * as APIUtil from '../util/api_util';
+import * as APIUtil from '../utils/api_util';
 
 export const RECEIVE_GIPHY = 'RECEIVE_GIPHY';
 export const REQUEST_GIPHY = 'REQUEST_GIPHY';
