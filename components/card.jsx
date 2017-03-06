@@ -22,9 +22,8 @@ class Card extends React.Component {
   }
 
   render() {
-    const back = `assets/cards/${this.value}${this.suit}.svg`;
+    const back = `assets/cards/${this.props.card.value}${this.props.card.suit}.svg`;
     const front = `assets/cards/back.svg`;
-
     return (
       <div className="container">
         <div className={this.state.flipCard}>

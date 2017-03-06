@@ -6,11 +6,11 @@ import Modal from 'react-modal';
 const customStyles = {
   overlay : {
     position          : 'fixed',
-    top               : 10,
+    top               : 0,
     left              : 0,
     right             : 0,
     bottom            : 0,
-    backgroundColor   : 'rgba(255, 255, 255, 0.6)'
+    backgroundColor   : 'rgba(255, 255, 255, .9)'
   },
   content : {
     top                   : '40%',
@@ -37,13 +37,15 @@ class Game extends React.Component {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      interval: null,
+      interval: 0,
       modalIsOpen: false,
       modal2IsOpen: false,
       modal3IsOpen: true,
-      gameMode: "easy",
+      gameMode: "normal",
       name: ""
     };
+
+    this.timeInterval = 0;
 
     this.time = "";
     this.name = "";
@@ -58,10 +60,12 @@ class Game extends React.Component {
     this.selectMode = this.selectMode.bind(this);
     this.startGame = this.startGame.bind(this);
     this.update = this.update.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchGiphy();
+    window.clearInterval(this.state.interval);
   }
 
   checkCard(cardComponent) {
@@ -86,7 +90,6 @@ class Game extends React.Component {
           secondCard: null,
           score: this.state.score + 1
         });
-
         if (this.state.score === 3) {
           this.openModal();
         }
@@ -105,9 +108,12 @@ class Game extends React.Component {
   }
 
   setTimer() {
-    this.setState({
-      interval: setInterval(this._tick.bind(this), 1000)
-    });
+    // this.timeInterval = setInterval(this._tick.bind(this), 1000);
+
+
+    // this.setState({
+    //   interval: setInterval(this._tick.bind(this), 1000)
+    // });
   }
 
   _tick() {
@@ -164,8 +170,8 @@ class Game extends React.Component {
 
   resetGame() {
     this.board = new Board();
-    window.clearInterval(this.state.interval);
-    console.log(this.state.interval)
+    window.clearInterval(this.timeInterval);
+    clearInterval(this.timeInterval);
     this.setState({
       score: 0,
       firstCard: null,
@@ -173,9 +179,31 @@ class Game extends React.Component {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      interval: clearInterval(this.state.interval)
+      interval: 0,
+      gameMode: "normal",
+      name: ""
     });
   }
+
+  restartGame() {
+    this.board = new Board();
+    window.clearInterval(this.timeInterval);
+    clearInterval(this.timeInterval);
+    this.setState({
+      score: 0,
+      firstCard: null,
+      secondCard: null,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      interval: 0,
+      gameMode: "normal",
+      modal3IsOpen: true,
+      name: ""
+    });
+  }
+
+
 
   openModal() {
     this.setState({ modalIsOpen: true });
@@ -185,7 +213,7 @@ class Game extends React.Component {
       this.setState({ modal2IsOpen: true});
       this.time = this.convertTime();
       this.resetGame();
-    }, 200);
+    }, 2000);
   }
 
   closeModal() {
@@ -193,7 +221,11 @@ class Game extends React.Component {
   }
 
   closeModal2() {
-    this.setState({modal2IsOpen: false });
+    this.setState({
+      modal2IsOpen: false,
+      modal3IsOpen: true,
+      gameMode: "normal"
+    });
   }
 
   closeModal3() {
@@ -223,8 +255,7 @@ class Game extends React.Component {
 
   render() {
     let cards = this.board.cards.map((card, idx) => {
-      let cardComponent = <Card card={card}/>;
-      return (<li key={idx} onClick={() => this.checkCard(cardComponent)}>{cardComponent}</li>);
+      return (<li key={idx} onClick={() => this.checkCard(<Card card={card}/>)}><Card card={card}/></li>);
     });
 
     let time = this.convertTime();
@@ -236,6 +267,8 @@ class Game extends React.Component {
 
     let winner = this.state.name;
     let score = this.state.score;
+
+    let klass = this.state.gameMode === "normal" ? "main-content" : "main-easy";
 
     return (
       <div className="body">
@@ -249,38 +282,36 @@ class Game extends React.Component {
             <div className="current-score  text-align">
               {this.state.score}
             </div>
-          </div>
 
-          <div className="game-setting">
-            <div className="text-align">Time</div>
-            <div className="current-time">
-              <time className="text-align">{time}</time>
-            </div>
             <div className="text-align">
-              <button className="restart-game" onClick={this.resetGame}>Reset</button>
+              <button className="restart-game" onClick={this.restartGame}>Reset</button>
             </div>
           </div>
         </div>
       </header>
 
       <main>
-        <div className="top-ten"></div>
-        <div className="main-content">
+        <div className={klass}>
           <ul className="board">
             {cards}
           </ul>
-
-          <div>
-            <button className="modal-button" onClick={this.openModal}>Modal</button>
-            <button className="modal2-button">Scoreboard</button>
-          </div>
         </div>
 
       </main>
 
       <footer>
         <div className="footer-content">
-
+          <div>
+            Contact Me at:
+          </div>
+          <div className="social">
+            <ul>
+              <li><a href="mailto:tsi.lung@gmail.com" className="icon fa-envelope"><span>Email</span></a></li>
+              <li><a href="https://www.linkedin.com/in/tsi-yang-lung-43528313/" className="icon fa-linkedin"><span>LinkedIn</span></a></li>
+              <li><a href="https://github.com/Tsifu" className="icon fa-github"><span>Github</span></a></li>
+              <li><a href="https://angel.co/tsi-lung" className="icon fa-angellist"><span>Angellist</span></a></li>
+            </ul>
+          </div>
         </div>
       </footer>
 
@@ -301,38 +332,15 @@ class Game extends React.Component {
           style={customStyles}
           contentLabel="score-top-ten"
           >
-        <div className="score-modal">
-          <div className="score-title">
-            <div>Scoreboard</div>
+        <div className="congrats-modal">
+          <div className="congrats-title">
+            Congrats, You win!!!!!
           </div>
-          <div className="leaderboard-detail">
-            <div className="leaderNumber">
-              <ul>
-                <li>number</li>
-                <li>1</li>
-              </ul>
+            <div className="congrats-winner">
+                {winner}
             </div>
-            <div>
-              <ul>
-                <li>Name</li>
-                <li className="animate-border">{winner}</li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Score</li>
-                <li>{score}</li>
-              </ul>
-            </div>
-            <div>
-              <ul>
-                <li>Time</li>
-                <li>{this.time}</li>
-              </ul>
-            </div>
-          </div>
-          <div className="exit-button">
-            <button  onClick={this.closeModal2}>Exit</button>
+          <div className="exit-div">
+            <button className="exit-button" onClick={this.closeModal2}>Exit</button>
           </div>
         </div>
 
@@ -348,21 +356,21 @@ class Game extends React.Component {
           <div className="select-modal">
             <div className="welcome-sign">Welcome!</div>
 
-            <div>
+            <div className="select-mode1">
               Select Mode:
               <select className="select-option" onChange={this.selectMode}>
-                <option value="easy">Easy</option>
                 <option value="normal">Normal</option>
+                <option value="easy">Easy</option>
               </select>
             </div>
 
-            <div>
+            <div className="select-mode1">
               Enter Name:
                 <input
                   className="name-input"
                   type="text"
                   value={this.state.name}
-                  placeholder="Enter Name"
+                  placeholder=" Enter Name"
                   onChange={this.update('name')}
                   />
 
