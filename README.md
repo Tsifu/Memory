@@ -19,7 +19,8 @@ Simple and fun single player card game to test your memory and concentration bui
 ### Detail
 
 * Created a card, board and game class to handle each object's component
-* Implemented redux containers to fetch AJAX request for celebratory animation when the game is completed
+* Implemented XMLHttpRequest with JavaScript to fetch celebratory animation through Giphy API
+* Used setTimeout to automate cards flipping back facedown when player chooses two unmatched cards
 * Renders each card component with specific card animation to enhance player's experience
 * Optimized random card placement with card shuffling logic
 * Leveraged classes in CSS styling to render different card layout dependent on game mode

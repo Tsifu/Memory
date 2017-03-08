@@ -11498,7 +11498,6 @@ var Game = function (_React$Component) {
             this.openModal();
           }
         } else {
-
           setTimeout(function () {
             card1.props.card.revealed = false;
             card2.props.card.revealed = false;

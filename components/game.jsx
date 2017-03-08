@@ -85,14 +85,11 @@ class Game extends React.Component {
         }
 
       } else {
-
-
         setTimeout(() => {
           card1.props.card.revealed = false;
           card2.props.card.revealed = false;
           this.setState({ firstCard: null });
           this.setState({ secondCard: null });
-
         }, 1500);
       }
     }
