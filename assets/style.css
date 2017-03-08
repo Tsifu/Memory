@@ -9,7 +9,8 @@ body, main, ul, li {
 
 body {
 	background-image: url('./background/background_two.jpg');
-	background-size: cover;
+	background-repeat:no-repeat;
+	background-size:cover;
 }
 
 .header-content, .main-content, .main-easy, .footer-content {
@@ -218,6 +219,7 @@ li {
 	position: relative;
 	box-sizing: border-box;
 	transition: all 500ms ease;
+	cursor: pointer;
 }
 
 .restart-game:before {
@@ -251,6 +253,7 @@ li {
 	box-sizing: border-box;
 	transition: all 500ms ease;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .go-button:before {
@@ -333,8 +336,7 @@ option {
 
 .congrats-winner {
 	color: #f2f2f2;
-	padding-left: 109px;
-	margin-bottom: 5px;
+	text-align: center;
 	margin-top: 5px;
 }
 
@@ -342,13 +344,14 @@ option {
 	border: none;
 	background: #3a7999;
 	color: #f2f2f2;
-	padding: 10px;
+	padding-top: 11px;
 	font-size: 18px;
 	border-radius: 5px;
 	position: relative;
 	box-sizing: border-box;
 	transition: all 500ms ease;
 	margin-bottom: 10px;
+	cursor: pointer;
 }
 
 .exit-button:before {
@@ -369,7 +372,7 @@ option {
 
 .exit-div {
 	width: 100px;
-	margin-left: 98px;
+	margin-left: 80px;
 	margin-top: 5px;
 }
 

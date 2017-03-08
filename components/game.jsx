@@ -111,7 +111,6 @@ class Game extends React.Component {
       seconds: 0,
       interval: 0,
       gameMode: "normal",
-      name: ""
     });
   }
 
@@ -129,7 +128,6 @@ class Game extends React.Component {
       interval: 0,
       gameMode: "normal",
       modal3IsOpen: true,
-      name: ""
     });
   }
 
@@ -151,7 +149,8 @@ class Game extends React.Component {
     this.setState({
       modal2IsOpen: false,
       modal3IsOpen: true,
-      gameMode: "normal"
+      gameMode: "normal",
+      name: ""
     });
   }
 
@@ -188,6 +187,7 @@ class Game extends React.Component {
 
     let winner = this.state.name;
     let score = this.state.score;
+    console.log(winner);
 
     let klass = this.state.gameMode === "normal" ? "main-content" : "main-easy";
 
@@ -230,7 +230,6 @@ class Game extends React.Component {
               <li><a href="mailto:tsi.lung@gmail.com" className="icon fa-envelope"><span>Email</span></a></li>
               <li><a href="https://www.linkedin.com/in/tsi-yang-lung-43528313/" className="icon fa-linkedin"><span>LinkedIn</span></a></li>
               <li><a href="https://github.com/Tsifu" className="icon fa-github"><span>Github</span></a></li>
-              <li><a href="https://angel.co/tsi-lung" className="icon fa-angellist"><span>Angellist</span></a></li>
             </ul>
           </div>
         </div>
@@ -261,7 +260,7 @@ class Game extends React.Component {
                 {winner}
             </div>
           <div className="exit-div">
-            <button className="exit-button" onClick={this.closeModal2}>Exit</button>
+            <button className="exit-button" onClick={this.closeModal2}>Try Again</button>
           </div>
         </div>
 
