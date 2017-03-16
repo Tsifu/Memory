@@ -184,7 +184,6 @@ class Game extends React.Component {
 
     let winner = this.state.name;
     let score = this.state.score;
-    console.log(winner);
 
     let klass = this.state.gameMode === "normal" ? "main-content" : "main-easy";
 
